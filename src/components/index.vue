@@ -24,14 +24,14 @@
                                         </p>
                                     </h3>
                                     <div class="item-box">
-                                        <dl>
+                                        <dl >
                                             <dt>
-                                                <a href="/goods/40.html">手机数码</a>
+                                                <a href="/goods/40.html">{{item.title}}</a>
                                             </dt>
-                                            <dd>
-                                                <a href="/goods/43.html">手机通讯</a>
-                                                <a href="/goods/43.html">摄影摄像</a>
-                                                <a href="/goods/43.html">存储设备</a>
+                                            <dd v-for="(item, index) in item.subcates" :key="index">
+                                                <a href="/goods/43.html">{{item.title}}</a>
+                                                <!-- <a href="/goods/43.html">摄影摄像</a>
+                                                <a href="/goods/43.html">存储设备</a> -->
                                             </dd>
                                         </dl>
                                     </div>
@@ -444,7 +444,7 @@ export default {
         this.cateList = response.data.message.catelist;
         this.sliderList = response.data.message.sliderlist;
         this.topList = response.data.message.toplist;
-        // console.log(this.cateList)
+        console.log(this.cateList)
       });
     //   商品列表
     axios
