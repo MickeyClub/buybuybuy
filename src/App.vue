@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="aaa">
     <!-- 头部 -->
     <div class="header">
         <!-- 1.0 导航栏头部 -->
@@ -121,7 +121,8 @@
 
 <script>
 export default {
-  name: "app"
+  name: "aaa",
+  
 };
 </script>
 

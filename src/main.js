@@ -1,36 +1,24 @@
+// 引入 Vue模块
 import Vue from 'vue'
+// 引入App.vue页面
 import App from './App.vue'
-
+// 默认开发
 Vue.config.productionTip = false
-
-// 导入路由
+// 引入 路由模块
 import VueRouter from 'vue-router'
-// 导入首页组件
-import index from './components/index.vue'
 
+// 引入element-ui模块
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import router from './router.js'
 // 一定要use一下
 Vue.use(VueRouter)
+Vue.use(ElementUI)
 
-// 路由规则
-const routes = [
-  {
-    path: '/',
-    component: index
-  },
-  {
-    path: '/index',
-    component: index
-  }
-]
-
-// 实例化路由
-const router = new VueRouter({
-  routes
-})
-
-
+// 实例化vue
 new Vue({
+  // 渲染主组件
   render: h => h(App),
-  // 挂在路由
+  // 挂载路由
   router
-}).$mount('#app')
+}).$mount('#app') // 挂载到index页面#app的div上
