@@ -1,5 +1,5 @@
 <template>
-  <div id="aaa">
+  <div id="app">
     <!-- 头部 -->
     <div class="header">
         <!-- 1.0 导航栏头部 -->
@@ -26,7 +26,8 @@
                     <a href="" class="">
                         <i class="iconfont icon-cart"></i>购物车(
                         <span id="shoppingCartCount">
-                            <span>4</span>
+                            <!-- 获取vuex的count数据 -->
+                            <span>{{$store.getters.cartDataCount}}</span>
                         </span>)</a>
                 </div>
             </div>
@@ -80,6 +81,8 @@
             </div>
         </div>
     </div>
+    <!-- 测试App.vue的vuex功能 -->
+    <input type="button" value="我是App.vue的按钮" @click="add"> 
 
     <!-- 组件出口 -->
     <router-view></router-view>
@@ -124,7 +127,7 @@
 import $ from "jquery";
 
 export default {
-  name: "aaa",
+  name: "app",
   mounted() {
     $(document).ready(function() {
       $("#menu2 li a").wrapInner('<span class="out"></span>');
@@ -151,13 +154,21 @@ export default {
         }
       );
     });
+  },
+  methods: {
+    add() {
+      // 修改$store中的数据
+      console.log(this.$store.state)
+      this.$store.commit("increment");
+    }
   }
 };
 </script>
 
 <style>
 @import url("./assets/statics/site/css/style.css");
-.menuhd ul li a span.over, .menu ul li a span.bg{
-    background-color: yellowgreen;
+.menuhd ul li a span.over,
+.menu ul li a span.bg {
+  background-color: yellowgreen;
 }
 </style>
