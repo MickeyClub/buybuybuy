@@ -68,7 +68,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr v-for="(item, index) in goodsList" :key="item.id">
+                                <tr v-for="(item) in goodsList" :key="item.id">
                                     <td>
                                         <!-- <div role="switch" aria-checked="true" class="el-switch is-checked"><input type="checkbox" name="" true-value="true" class="el-switch__input"><span class="el-switch__core" style="width: 40px; border-color: black; background-color: black;"></span></div> -->
                                         <el-switch v-model="item.seleced" active-color="#13ce66" inactive-color="#ff4949">
@@ -104,7 +104,7 @@
                     <div class="cart-foot clearfix">
                         <div class="right-box">
                             <button class="button" onclick="javascript:location.href='/index.html';">继续购物</button>
-                            <button class="submit" onclick="formSubmit(this, '/', '/shopping.html');">立即结算</button>
+                            <router-link to="/checkOrder"><button class="submit">立即结算</button></router-link>
                         </div>
                     </div>
                     <!--购物车底部-->
