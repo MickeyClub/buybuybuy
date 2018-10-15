@@ -23,12 +23,17 @@
                         <a>退出</a>
                         <strong>|</strong>
                     </span>
-                    <a href="" class="">
-                        <i class="iconfont icon-cart"></i>购物车(
+                    <!-- <a href="" class=""> -->
+                        <!-- <router-link :to="'/cart'"> -->
+                        <router-link to="/shopcart">
+                        <i class="iconfont icon-cart" ref="cart"></i>购物车(
                         <span id="shoppingCartCount">
                             <!-- 获取vuex的count数据 -->
                             <span>{{$store.getters.cartDataCount}}</span>
-                        </span>)</a>
+                        </span>)
+                        <!-- </router-link> -->
+                        </router-link>
+                    <!-- </a> -->
                 </div>
             </div>
         </div>
@@ -39,7 +44,7 @@
                 <div id="menu2" class="nav-box menuhd">
                     <ul>
                         <li class="index">
-                          <router-link to="./index">
+                          <router-link to="/index">
                                 <span class="out" style="top: 0px;">首页</span>
                             </router-link>
                         </li>
@@ -82,7 +87,7 @@
         </div>
     </div>
     <!-- 测试App.vue的vuex功能 -->
-    <input type="button" value="我是App.vue的按钮" @click="add"> 
+    <!-- <input type="button" value="我是App.vue的按钮" @click="add">  -->
 
     <!-- 组件出口 -->
     <router-view></router-view>
@@ -158,7 +163,7 @@ export default {
   methods: {
     add() {
       // 修改$store中的数据
-      console.log(this.$store.state)
+      console.log(this.$store.state);
       this.$store.commit("increment");
     }
   }

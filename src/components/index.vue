@@ -129,29 +129,28 @@ export default {
       aaa: [],
       // 商品列表
       message: []
-
     };
   },
   // 页面挂在并创建
   created() {
     //   头部
     this.$axios
-    //   .get(this.$baseURL+"/site/goods/gettopdata/goods")
+      //   .get(this.$baseURL+"/site/goods/gettopdata/goods")
       .get("/site/goods/gettopdata/goods")
       .then(response => {
         //   console.log(response)
         this.cateList = response.data.message.catelist;
         this.sliderList = response.data.message.sliderlist;
         this.topList = response.data.message.toplist;
-        console.log(this.cateList)
+        console.log(this.cateList);
       });
     //   商品列表
     this.$axios
-    //   .get(this.$baseURL+"/site/goods/getgoodsgroup")
+      //   .get(this.$baseURL+"/site/goods/getgoodsgroup")
       .get("/site/goods/getgoodsgroup")
       .then(response => {
         //   console.log(response);
-          this.message = response.data.message
+        this.message = response.data.message;
         //   console.log(this.message)
       });
   }
