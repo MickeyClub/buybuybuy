@@ -54,7 +54,7 @@
                                     <th width="104" align="left">金额(元)</th>
                                     <th width="54" align="center">操作</th>
                                 </tr>
-                                <tr>
+                                <tr v-if="goodsList.length == 0">
                                     <td colspan="10">
                                         <div class="msg-tips">
                                             <div class="icon warning">
@@ -68,7 +68,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr v-for="(item) in goodsList" :key="item.id">
+                                <tr v-if="goodsList.length != 0" v-for="(item) in goodsList" :key="item.id">
                                     <td>
                                         <!-- <div role="switch" aria-checked="true" class="el-switch is-checked"><input type="checkbox" name="" true-value="true" class="el-switch__input"><span class="el-switch__core" style="width: 40px; border-color: black; background-color: black;"></span></div> -->
                                         <el-switch v-model="item.seleced" active-color="#13ce66" inactive-color="#ff4949">
@@ -142,7 +142,7 @@ export default {
                     }
                 });
                 // 删除vuex数据,并传对应的id
-                this.$store.commit('delById',id)
+                this.$store.commit('delById', id)
             }).catch(() => {
                 this.$message({
                     type: 'info',
@@ -152,11 +152,11 @@ export default {
         },
         // \使用了$event传递元素的参数
         changeShop(id, newCount) {
-            this.$store.commit('updateCart',{
+            this.$store.commit('updateCart', {
                 id,
                 newCount
             })
-            console.log(id,newCount)
+            console.log(id, newCount)
         }
     },
     created() {
@@ -176,33 +176,25 @@ export default {
                 v.seleced = true
                 v.buycount = this.$store.state.shopCartData[v.id];
             });
+            // 动态修改接口的数据, 注意,必须要接口赋值完毕才放回数据,否则需要使用Vue.set动态添加数据
             this.goodsList = response.data.message;
-            console.log(this.goodsList);
         });
     },
     computed: {
         // 计算商品数量 及商品总价
         shop() {  // 商品数量
             let shop = {};
+            shop.num = 0
+            // 选中的商品 并计算总价格 
             this.goodsList.forEach(v => {
                 if (v.seleced) {
                     shop.num++;
                     shop.price = v.buycount * v.sell_price
                 }
             });
+            // 放回对象(商品总量 总价格)
             return shop;
         }
-
-        // },
-        // shopPrice() {
-        //     let price = 0;
-        //     this.goodsList.forEach(v => {
-        //         if (v.seleced) {
-        //             price = v.buycount * v.sell_price
-        //         }
-        //     })
-        //     return price
-        // }
     }
 };
 </script>

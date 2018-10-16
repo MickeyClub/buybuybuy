@@ -1,5 +1,5 @@
 // 导入axios
-import axios from 'axios'
+import Vue from 'vue'
 // 导入路由模块
 import VueRouter from 'vue-router'
 // 导入首页组件
@@ -10,35 +10,64 @@ import detail from './components/detail.vue'
 import cart from './components/cart.vue'
 // 导入购物车模块
 import shopcart from './components/shopcart.vue'
-// 导入登录模块
+// 导入登录页模块
+import login from './components/login.vue'
+// 导入订单模块
 import checkOrder from './components/checkOrder.vue'
+
+
 // 导入路由模块
 // 一定要use一下
 // 路由规则
 const routes = [{
         path: '/',
-        component: index
+        component: index,
+        meta: {
+            title: '首页'
+        }
     },
     {
         path: '/index',
-        component: index
+        component: index,
+        meta: {
+            title: '首页'
+        }
     },
     {
         path: '/detail/:id',
-        component: detail
+        component: detail,
+        meta: {
+            title: '商品信息'
+        }
     },
     {
         path: '/cart', // 自己写的
-        component: cart
+        component: cart,
+        meta: {
+            title: '购物车'
+        }
     },
     {
         path: '/shopcart',
-        component: shopcart
+        component: shopcart,
+        meta: {
+            title: '购物车'
+        }
     },
     {
         path: '/checkOrder',
-        component: checkOrder
-    }
+        component: checkOrder,
+        meta: {
+            title: '订单信息'
+        }
+    },
+    {
+        path: '/login',
+        component: login,
+        meta: {
+            title: '登录'
+        }
+    },
 ]
 
 // 实例化路由
@@ -49,22 +78,24 @@ const router = new VueRouter({
 
 // 跳转到订单信息时判断是否登录
 router.beforeEach((to, from, next) => {
-    console.log('跳转了')
-    console.log(to)
-    console.log(from)
-    console.log(this)
+    console.log(to)  // 跳转之后的参数
+    console.log(from)  // 跳转之前的参数
     // 跳转到订单信息后,如果请求接口返回为登录(nologin),则跳转首页
     if(to.path == '/checkOrder'){
         // 请求接口,根据返回的状态 
-        axios.get('site/account/islogin').then((response)=>{
+        Vue.prototype.$axios.get('site/account/islogin').then((response)=>{
             console.log(response)
+            // console.log(response)
             if(response.data.code == 'nologin'){
-                router.push('/index')
+                // 跳转登录页
+                router.push('/login')
             }else{
+                // 继续操作
                 next()
             }
         })
     }else{
+        // 继续操作
         next()
     }
     

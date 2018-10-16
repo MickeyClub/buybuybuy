@@ -12,8 +12,10 @@ const store = new Vuex.Store({
     count: 0,
     // 先定义一个空对象,数据格式: { 商品id:购买个数  ,商品id2:购买个数}   数据常驻
     shopCartData: JSON.parse(localStorage.getItem('totalCar')) || {},
-    // 购物车数量
-    totalCount: 0
+    // // 购物车数量
+    // totalCount: 0,
+    // 定义一个登录状态
+    isLogin: false,
   },
   // 修改数据的方式  (提交载荷)  
   // 3. 如果组件想要修改数据, 必须使用mutations提供的方法,需要 this.$store.commit("方法的名称", 唯一的参数)
@@ -46,7 +48,12 @@ const store = new Vuex.Store({
     delById(state,id){
       // 直接使用Vue.delete 可以动态的删除数据  
       Vue.delete(state.shopCartData, id)
-    }
+    },
+    // 登录状态
+    changeLoginState(state, login){  
+      state.isLogin = login;
+      state.text = login
+    } 
     
     // 删除商品  自写
     // removeGood(state, obj) {

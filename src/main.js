@@ -13,6 +13,9 @@ Vue.prototype.$axios = axios;
 // Vue.prototype.$baseURL = 'http://111.230.232.110:8899'
 // 设置axios基路径
 axios.defaults.baseURL = 'http://111.230.232.110:8899';
+// 设置axios跨域请求携带cookie
+// 跨域是否携带凭证
+axios.defaults.withCredentials = true;
 // 引入element-ui模块
 import ElementUI from 'element-ui';
 // 引入iview模块
@@ -62,7 +65,16 @@ new Vue({
   // 挂载路由
   router,
   // 挂载 Vuex
-  store
+  store,
+  // 页面(一打开)重现刷新后,需要重新判断登录状态,否则vuex的登录状态默认是false  ==> 将它放到了App.vue中,因为mian.js最终也是挂在到App.vue上
+  // created() {
+  //   axios.get('site/account/islogin').then((response)=>{
+  //     console.log(response)
+  //     if(response.data.code == "logined"){
+  //       store.commit('changeLoginState',true)
+  //     }
+  //   })
+  // },
 }).$mount('#app') // 挂载到index页面#app的div上
 
 
