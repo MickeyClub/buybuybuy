@@ -12,8 +12,6 @@ const store = new Vuex.Store({
     count: 0,
     // 先定义一个空对象,数据格式: { 商品id:购买个数  ,商品id2:购买个数}   数据常驻
     shopCartData: JSON.parse(localStorage.getItem('totalCar')) || {},
-    // // 购物车数量
-    // totalCount: 0,
     // 定义一个登录状态
     isLogin: false,
   },
@@ -37,24 +35,22 @@ const store = new Vuex.Store({
       } else {
         state.shopCartData[opt.id] += opt.buyNum
       }
-      // 数据常驻
-      localStorage.setItem('totalCar', JSON.stringify(state.shopCartData))
+
     },
-    updateCart(state, opt){
+    updateCart(state, opt) {
       // 获取id
       state.shopCartData[opt.id] = opt.newCount
     },
     // 删除商品
-    delById(state,id){
+    delById(state, id) {
       // 直接使用Vue.delete 可以动态的删除数据  
       Vue.delete(state.shopCartData, id)
     },
     // 登录状态
-    changeLoginState(state, login){  
+    changeLoginState(state, login) {
       state.isLogin = login;
-      state.text = login
-    } 
-    
+    }
+
     // 删除商品  自写
     // removeGood(state, obj) {
     //   //   localStorage.setItem('obj',JSON.stringify(obj))
@@ -76,7 +72,7 @@ const store = new Vuex.Store({
   getters: {
     cartDataCount(state) {
       //   console.log(state)
-        let totalCount = 0;
+      let totalCount = 0;
       // 遍历state里的数据 shopCartData
       for (const key in state.shopCartData) {
         //  将对象的属
@@ -91,3 +87,12 @@ const store = new Vuex.Store({
 
 // 5. 将vuex的数据仓库对象暴露出去,并挂在到vue中
 export default store
+
+window.onunload = function () {
+  // 数据常驻
+  localStorage.setItem('totalCar', JSON.stringify(store.state.shopCartData))
+}
+
+// window.onbeforeunload = function () {
+//   localStorage.setItem('totalCar', JSON.stringify(store.state.shopCartData))
+// }

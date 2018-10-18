@@ -19,7 +19,8 @@
                             <strong>|</strong>
                         </span>
                         <span v-show="this.$store.state.isLogin">
-                            <a href="" class="">会员中心</a>
+                            <!-- <a href="" class="">会员中心</a> -->
+                            <router-link to="/userInfo">会员中心</router-link>
                             <strong>|</strong>
                             <a @click="dropOut">退出</a>
                             <strong>|</strong>

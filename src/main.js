@@ -58,6 +58,11 @@ import router from './router.js'
 // 导入vuex模块的store数据仓库对象
 import store from "./vuex"
 
+// 导入二维码模块
+import VueQriously from 'vue-qriously'
+Vue.use(VueQriously)
+
+
 // 实例化vue
 new Vue({
   // 渲染主组件

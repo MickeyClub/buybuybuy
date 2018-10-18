@@ -69,7 +69,7 @@ export default {
                         type: 'success'
                     });
                     // 注意 必须设置axios跨域请求携带cookie,否则会一直登录失败
-                    this.$router.push('/checkOrder')
+                    this.$router.push('/checkOrder/ids')
                     // 登录成功 改变登录成功状态
                     this.$store.commit('changeLoginState', true)
                     // 在哪点击登录 就回去哪

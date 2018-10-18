@@ -104,7 +104,7 @@
                     <div class="cart-foot clearfix">
                         <div class="right-box">
                             <button class="button" onclick="javascript:location.href='/index.html';">继续购物</button>
-                            <router-link to="/checkOrder"><button class="submit">立即结算</button></router-link>
+                            <router-link :to="'/checkOrder/'+checkIds"><button class="submit">立即结算</button></router-link>
                         </div>
                     </div>
                     <!--购物车底部-->
@@ -119,7 +119,8 @@ export default {
     name: "shopcart",
     data: function () {
         return {
-            goodsList: []
+            goodsList: [],
+            goodsids: ''
         };
     },
     methods: {
@@ -173,7 +174,9 @@ export default {
             // console.log(response)
             // 手动修改buycount数量后 赋值
             response.data.message.forEach(v => {
+                // 被选中商品 添加一个选中字段 
                 v.seleced = true
+                // 动态修改商品数量(接口提供的是1)
                 v.buycount = this.$store.state.shopCartData[v.id];
             });
             // 动态修改接口的数据, 注意,必须要接口赋值完毕才放回数据,否则需要使用Vue.set动态添加数据
@@ -194,6 +197,19 @@ export default {
             });
             // 放回对象(商品总量 总价格)
             return shop;
+        },
+        // 因为需要检测商品是否被选中,如果被选中,则拼接id
+        checkIds() {
+            let id = '';
+            this.goodsList.forEach(v => {
+                if (v.seleced == true) {
+                    id += v.id;
+                    id += ','
+                }
+            })
+            // 去掉尾部,
+            id = id.slice(0, -1)
+            return id;
         }
     }
 };
