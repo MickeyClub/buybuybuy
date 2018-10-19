@@ -189,7 +189,7 @@ export default {
     // 页面(一打开)重现刷新后,需要重新判断登录状态,否则vuex的登录状态默认是false
     created() {
         this.$axios.get('site/account/islogin').then((response) => {
-            console.log(response)
+            // console.log(response)
             if (response.data.code == "logined") {
                 this.$store.commit('changeLoginState', true)
             }

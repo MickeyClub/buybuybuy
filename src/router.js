@@ -20,6 +20,12 @@ import payOrder from './components/payOrder.vue'
 import paySuccess from './components/paySuccess.vue'
 // 导入会员中心模块
 import userInfo from './components/userInfo.vue'
+// 导入会员中心的信息模块
+import info from './components/userInfoChildren/info.vue'
+// 导入会员中心的订单列表模块
+import orderList from './components/userInfoChildren/orderList.vue'
+// 导入会员中心的订单信息模块
+import orderInfo from './components/userInfoChildren/orderInfo.vue'
 
 
 // 导入路由模块
@@ -101,7 +107,34 @@ const routes = [{
             title: '支付成功',
             // 标志位 => 表示进入这个页面是 就激活导航守卫
             checkLogin: true
-        }
+        },
+        children: // 嵌套路由
+            [{
+                path: '',
+                component: info,
+                meta: {
+                    title: '会员中心',
+                },
+            },{
+                path: 'info',
+                component: info,
+                meta: {
+                    title: '会员中心',
+                },
+            }, {
+                path: 'orderList',
+                component: orderList,
+                meta: {
+                    title: '订单列表',
+                },
+            },{
+                path: 'orderInfo/:orderId',
+                component: orderInfo,
+                meta: {
+                    title: '订单信息',
+                },
+            } ]
+
     },
 ]
 
@@ -114,13 +147,13 @@ const router = new VueRouter({
 
 // 跳转到订单信息时判断是否登录
 router.beforeEach((to, from, next) => {
-    
+
     // 根据不同页面修改不同title
     window.document.title = to.meta.title
     // console.log(to) // 跳转之后的参数
     // console.log(from) // 跳转之前的参数
     // 跳转到订单信息后,如果请求接口返回为登录(nologin),则跳转首页
-    if (to.meta.checkLogin == true) {  // 如果有标记字段 就需要验证登录
+    if (to.meta.checkLogin == true) { // 如果有标记字段 就需要验证登录
         // 请求接口,根据返回的状态 
         Vue.prototype.$axios.get('site/account/islogin').then((response) => {
             // console.log(response)
@@ -137,7 +170,7 @@ router.beforeEach((to, from, next) => {
         next()
     }
 })
-router.afterEach((to,from,next)=>{
+router.afterEach((to, from, next) => {
     window.scroll(0, 0)
     // next()
 })
