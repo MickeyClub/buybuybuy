@@ -1,6 +1,6 @@
 <template>
     <div id="detail">
-        <input type="button" value="我是detail的按钮" @click="detailAdd">
+        <!-- <input type="button" value="我是detail的按钮" @click="detailAdd"> -->
         <div class="section">
             <div class="location">
                 <span>当前位置：</span>

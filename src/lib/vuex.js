@@ -93,6 +93,3 @@ window.onunload = function () {
   localStorage.setItem('totalCar', JSON.stringify(store.state.shopCartData))
 }
 
-// window.onbeforeunload = function () {
-//   localStorage.setItem('totalCar', JSON.stringify(store.state.shopCartData))
-// }
