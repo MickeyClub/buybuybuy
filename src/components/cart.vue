@@ -81,7 +81,7 @@
                                         已选择商品
                                         <b class="red" id="totalQuantity">{{num}}</b> 件 &nbsp;&nbsp;&nbsp; 商品总金额（不含运费）：
                                         <span class="red">￥</span>
-                                        <b class="red" id="totalAmount">{{totalPrice}}</b>元
+                                        <b class="red" id="totalAmount">{{totalPrice}}0</b>元
                                     </th>
                                 </tr>
                             </tbody>
@@ -176,6 +176,7 @@ export default {
           price += element.sell_price * element.buycount;
         }
       });
+      price = price =! 0 ? price : 0
       // 返回总金额
       return price;
     },

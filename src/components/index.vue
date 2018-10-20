@@ -62,11 +62,11 @@
                         <ul class="side-img-list">
                             <li v-for="(item, index) in topList" :key="item.id">
                                 <div class="img-box">
-                                    <label>{{index++}}</label>
+                                    <label>{{index+1}}</label>
                                     <img :src="item.img_url">
                                 </div>
                                 <div class="txt-box">
-                                    <a href="/goods/show-98.html">{{item.title}}</a>
+                                    <a :href="'#/detail/'+item.id">{{item.title}}</a>
                                     <span>{{item.add_time | formatTime('YYYY-MM-DD hh:mm:ss')}}</span>
                                 </div>
                             </li>

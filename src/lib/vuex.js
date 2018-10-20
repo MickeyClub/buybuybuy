@@ -86,10 +86,9 @@ const store = new Vuex.Store({
 })
 
 // 5. 将vuex的数据仓库对象暴露出去,并挂在到vue中
-export default store
-
 window.onunload = function () {
   // 数据常驻
   localStorage.setItem('totalCar', JSON.stringify(store.state.shopCartData))
 }
 
+export default store

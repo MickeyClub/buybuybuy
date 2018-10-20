@@ -195,6 +195,7 @@ export default {
                     shop.price = v.buycount * v.sell_price
                 }
             });
+            shop.price = shop.price != 0 ? shop.price : 0
             // 放回对象(商品总量 总价格)
             return shop;
         },

@@ -28,6 +28,30 @@ import info from '../components/userInfoChildren/info.vue'
 import orderList from '../components/userInfoChildren/orderList.vue'
 // 导入会员中心的订单信息模块
 import orderInfo from '../components/userInfoChildren/orderInfo.vue'
+// // 导入首页组件
+// import index from '../components/index.vue'
+// // 导入商品详情组件
+// import detail from '../components/detail.vue'
+// // 导入(自己写)购物车模块
+// import cart from '../components/cart.vue'
+// // 导入购物车模块
+// import shopcart from '../components/shopcart.vue'
+// // 导入登录页模块
+// import login from '../components/login.vue'
+// // 导入订单模块
+// import checkOrder from '../components/checkOrder.vue'
+// // 导入下单
+// import payOrder from '../components/payOrder.vue'
+// // 导入支付成功模块
+// import paySuccess from '../components/paySuccess.vue'
+// // 导入会员中心模块
+// import userInfo from '../components/userInfo.vue'
+// // 导入会员中心的信息模块
+// import info from '../components/userInfoChildren/info.vue'
+// // 导入会员中心的订单列表模块
+// import orderList from '../components/userInfoChildren/orderList.vue'
+// // 导入会员中心的订单信息模块
+// import orderInfo from '../components/userInfoChildren/orderInfo.vue'
 
 // 导入路由模块
 // 一定要use一下
