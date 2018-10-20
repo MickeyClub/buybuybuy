@@ -14,7 +14,6 @@ import {
     Form,
     Message
 } from 'element-ui';
-// 引入iview模块
 Vue.use(Carousel) 
 Vue.use(CarouselItem) 
 Vue.use(Input) 
@@ -26,6 +25,7 @@ Vue.use(Form)
 Vue.prototype.$message = Message;
 
 
+// 引入iview模块
 import iview from "iview";
 // Vue.use(ElementUI) // Vue实例使用element-ui
 Vue.use(iview) // Vue实例使用iview

@@ -92,7 +92,10 @@
         <!-- <input type="button" value="我是App.vue的按钮" @click="add">  -->
 
         <!-- 组件出口 -->
-        <router-view></router-view>
+        <!-- include: 字符串或正则表达式。只有名称匹配的组件会被缓存。 -->
+        <keep-alive include="index">
+            <router-view></router-view>
+        </keep-alive>
 
         <!-- 底部 -->
         <div class="footer">
